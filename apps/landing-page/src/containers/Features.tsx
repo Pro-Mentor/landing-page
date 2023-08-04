@@ -1,7 +1,5 @@
 import {
 	createStyles,
-	Badge,
-	Group,
 	Title,
 	Text,
 	Card,
@@ -15,6 +13,10 @@ import newsIcon from '../assets/news.svg'
 import connectionIcon from '../assets/connection-point.svg'
 import searchIcon from '../assets/person-search.svg'
 import commentIcon from '../assets/comment.svg'
+import { NavigationContext } from '../context/NavigationContext';
+import { NavigationContextType } from '../@types/navigation';
+import { scrolling } from '../utils/Scrolling';
+import { useContext, useEffect, useRef } from 'react';
 
 const mockdata = [
 	{
@@ -93,7 +95,15 @@ const useStyles = createStyles((theme) => ({
 }));
 
 export function Features() {
-	const { classes, theme } = useStyles();
+	const featuresRef = useRef()
+
+	const { navigateFeatures } = useContext(NavigationContext) as NavigationContextType
+
+	useEffect(() => {
+		scrolling(featuresRef)
+	}, [navigateFeatures])
+
+	const { classes } = useStyles();
 	const features = mockdata.map((feature) => (
 		<Card key={feature.title} shadow="md" radius="md" className={classes.card} padding="xl">
 			<img src={feature.icon} alt="icon" width={60} />
@@ -107,15 +117,10 @@ export function Features() {
 	));
 
 	return (
-		<Container size="lg" py="xl">
+		<Container ref={featuresRef} size="lg" py={60}>
 			<Title order={2} className={classes.title} ta="center" mt="sm">
 				Unlock Your Potential with ProMentor
 			</Title>
-
-			{/* <Text c="dimmed" className={classes.description} ta="center" mt="md">
-				Every once in a while, you’ll see a Golbat that’s missing some fangs. This happens when
-				hunger drives it to try biting a Steel-type Pokémon.
-			</Text> */}
 
 			<SimpleGrid cols={3} spacing="xl" mt={50} breakpoints={[{ maxWidth: 'md', cols: 1 }]}>
 				{features}

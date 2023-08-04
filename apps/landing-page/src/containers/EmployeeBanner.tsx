@@ -1,10 +1,7 @@
 import {
 	createStyles,
 	Title,
-	SimpleGrid,
 	Text,
-	Button,
-	ThemeIcon,
 	Grid,
 	Col,
 	rem,

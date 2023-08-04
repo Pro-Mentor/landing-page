@@ -1,15 +1,17 @@
 import {
 	createStyles,
 	Title,
-	SimpleGrid,
 	Text,
 	Button,
-	ThemeIcon,
 	Grid,
 	Col,
 	rem,
 	Container,
 } from '@mantine/core';
+import { useContext, useEffect, useRef } from 'react';
+import { scrolling } from '../utils/Scrolling';
+import { NavigationContext } from '../context/NavigationContext';
+import { NavigationContextType } from '../@types/navigation';
 // import { IconReceiptOff, IconFlame, IconCircleDotted, IconFileCode } from '@tabler/icons-react';
 
 const useStyles = createStyles((theme) => ({
@@ -51,10 +53,18 @@ const useStyles = createStyles((theme) => ({
 }));
 
 export function RegisterBanner() {
+	const companiesRef = useRef()
+
+	const { navigateCompanies } = useContext(NavigationContext) as NavigationContextType
+
+	useEffect(() => {
+		scrolling(companiesRef)
+	}, [navigateCompanies])
+
 	const { classes } = useStyles();
 
 	return (
-		<Container className={classes.wrapper1}>
+		<Container ref={companiesRef} className={classes.wrapper1}>
 			<div className={classes.wrapper}>
 				<Grid gutter={80} className={classes.col2}>
 					<Col span={12} md={6}>

@@ -9,7 +9,7 @@ const useStyles = createStyles((theme) => ({
 			`url(${heroImage})`,
 		backgroundSize: 'cover',
 		backgroundPosition: 'center',
-
+		marginTop: rem(-60),
 		[theme.fn.smallerThan('md')]: {
 			// width: '100%',
 			// height: rem(900),

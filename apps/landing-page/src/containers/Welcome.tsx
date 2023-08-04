@@ -3,16 +3,16 @@ import {
 	Image,
 	Container,
 	Title,
-	Button,
-	Group,
 	Text,
-	List,
-	ThemeIcon,
 	rem,
 	px,
 } from '@mantine/core';
 // import { IconCheck } from '@tabler/icons-react';
 import image from '../assets/welcome.png';
+import { useContext, useEffect, useRef } from 'react';
+import { NavigationContext } from '../context/NavigationContext';
+import { NavigationContextType } from '../@types/navigation';
+import { scrolling } from '../utils/Scrolling';
 
 const useStyles = createStyles((theme) => ({
 	wrapper: {
@@ -89,10 +89,18 @@ const useStyles = createStyles((theme) => ({
 }));
 
 export function Welcome() {
+	const aboutRef = useRef()
+
+	const { navigateAbout } = useContext(NavigationContext) as NavigationContextType
+
+	useEffect(() => {
+		scrolling(aboutRef)
+	}, [navigateAbout])
+
 	const { classes } = useStyles();
 	return (
-		<div className={classes.bg}>
-			<Container className={classes.wrapper}>
+		<div className={classes.bg} style={{ paddingTop: rem(60), paddingBottom: rem(60) }}>
+			<Container ref={aboutRef} className={classes.wrapper}>
 				<div className={classes.inner}>
 					<div className={classes.content}>
 						<Title className={classes.title}>

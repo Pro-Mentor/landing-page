@@ -1,7 +1,5 @@
 import {
-	createStyles,
 	Text,
-	rem,
 } from '@mantine/core';
 
 export function Footer() {
