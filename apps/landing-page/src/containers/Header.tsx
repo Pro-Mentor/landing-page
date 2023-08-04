@@ -1,26 +1,21 @@
 import {
 	createStyles,
 	Header,
-	HoverCard,
 	Group,
 	Button,
 	UnstyledButton,
 	Text,
-	SimpleGrid,
 	ThemeIcon,
-	Anchor,
 	Divider,
-	Center,
 	Box,
 	Burger,
 	Drawer,
-	Collapse,
 	ScrollArea,
 	rem,
 	px,
 } from '@mantine/core';
 import { useDisclosure } from '@mantine/hooks';
-import logo from "./logo.svg";
+import logo from "../assets/logo.svg";
 
 const useStyles = createStyles((theme) => ({
 	button: {
@@ -142,7 +137,7 @@ export function LandingHeader() {
 	));
 
 	return (
-		<Box pb={120}>
+		<Box>
 			<Header height={60} px="md">
 				<Group position="apart" sx={{ height: '100%' }}>
 					<div>
