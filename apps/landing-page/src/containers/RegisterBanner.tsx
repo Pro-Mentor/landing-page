@@ -55,16 +55,17 @@ const useStyles = createStyles((theme) => ({
 export function RegisterBanner() {
 	const companiesRef = useRef()
 
-	const { navigateCompanies } = useContext(NavigationContext) as NavigationContextType
+	const { companies } = useContext(NavigationContext) as NavigationContextType
 
 	useEffect(() => {
+		console.log(companies)
 		scrolling(companiesRef)
-	}, [navigateCompanies])
+	}, [companies])
 
 	const { classes } = useStyles();
 
 	return (
-		<Container ref={companiesRef} className={classes.wrapper1}>
+		<Container ref={companiesRef} className={classes.wrapper1} py={60}>
 			<div className={classes.wrapper}>
 				<Grid gutter={80} className={classes.col2}>
 					<Col span={12} md={6}>

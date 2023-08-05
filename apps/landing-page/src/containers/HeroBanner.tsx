@@ -1,5 +1,9 @@
 import { createStyles, Container, rem } from '@mantine/core';
 import heroImage from '../assets/hero-banner.png'
+import { useContext, useEffect, useRef } from 'react';
+import { NavigationContext } from '../context/NavigationContext';
+import { NavigationContextType } from '../@types/navigation';
+import { scrolling } from '../utils/Scrolling';
 
 const useStyles = createStyles((theme) => ({
 	hero: {
@@ -77,10 +81,18 @@ const useStyles = createStyles((theme) => ({
 }));
 
 export function HeroBanner() {
+	const topRef = useRef()
+
+	const { top } = useContext(NavigationContext) as NavigationContextType
+
+	useEffect(() => {
+		scrolling(topRef)
+	}, [top])
+
 	const { classes } = useStyles();
 
 	return (
-		<div className={classes.hero}>
+		<div ref={topRef} className={classes.hero}>
 			<Container className={classes.container} fluid>
 			</Container>
 		</div>

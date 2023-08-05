@@ -18,4 +18,7 @@ export type NavigationContextType = {
 
 	mentors: boolean;
 	navigateMentors: () => void;
+
+	top: boolean;
+	navigateTop: () => void;
 }

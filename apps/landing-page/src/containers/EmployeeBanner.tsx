@@ -7,6 +7,10 @@ import {
 	rem,
 	Container,
 } from '@mantine/core';
+import { useContext, useEffect, useRef } from 'react';
+import { NavigationContext } from '../context/NavigationContext';
+import { NavigationContextType } from '../@types/navigation';
+import { scrolling } from '../utils/Scrolling';
 // import { IconReceiptOff, IconFlame, IconCircleDotted, IconFileCode } from '@tabler/icons-react';
 
 const useStyles = createStyles((theme) => ({
@@ -48,10 +52,18 @@ const useStyles = createStyles((theme) => ({
 }));
 
 export function EmployeeBanner() {
+	const employeeRef = useRef()
+
+	const { mentors } = useContext(NavigationContext) as NavigationContextType
+
+	useEffect(() => {
+		scrolling(employeeRef)
+	}, [mentors])
+
 	const { classes } = useStyles();
 
 	return (
-		<Container className={classes.wrapper1}>
+		<Container ref={employeeRef} className={classes.wrapper1} py={60}>
 			<div className={classes.wrapper}>
 				<Title className={classes.title} order={2}>
 					Calling All Industry Professionals!

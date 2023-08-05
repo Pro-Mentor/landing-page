@@ -1,4 +1,4 @@
-import React, { Dispatch, DispatchWithoutAction, useState } from "react";
+import React, { useState } from "react";
 import { NavigationContextType } from "../@types/navigation";
 
 // interface Store {
@@ -18,6 +18,7 @@ const NavigationProvider: React.FC<Props> = ({ children }) => {
 	const [features, setFeatures] = useState<boolean>(false)
 	const [mentors, setMentors] = useState<boolean>(false)
 	const [companies, setCompanies] = useState<boolean>(false)
+	const [top, setTop] = useState<boolean>(false)
 
 	const navigateCurrentPath = () => {
 		setCurrentPath(window.location.pathname)
@@ -39,6 +40,10 @@ const NavigationProvider: React.FC<Props> = ({ children }) => {
 		setMentors(!mentors)
 	}
 
+	const navigateTop = () => {
+		setTop(!top)
+	}
+
 	return (
 		<NavigationContext.Provider value={{
 			currentPath,
@@ -50,7 +55,9 @@ const NavigationProvider: React.FC<Props> = ({ children }) => {
 			companies,
 			navigateCompanies,
 			mentors,
-			navigateMentors
+			navigateMentors,
+			top,
+			navigateTop
 		}}>
 			{children}
 		</NavigationContext.Provider>

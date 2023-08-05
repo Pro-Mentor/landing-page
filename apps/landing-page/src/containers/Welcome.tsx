@@ -91,16 +91,16 @@ const useStyles = createStyles((theme) => ({
 export function Welcome() {
 	const aboutRef = useRef()
 
-	const { navigateAbout } = useContext(NavigationContext) as NavigationContextType
+	const { about } = useContext(NavigationContext) as NavigationContextType
 
 	useEffect(() => {
 		scrolling(aboutRef)
-	}, [navigateAbout])
+	}, [about])
 
 	const { classes } = useStyles();
 	return (
-		<div className={classes.bg} style={{ paddingTop: rem(60), paddingBottom: rem(60) }}>
-			<Container ref={aboutRef} className={classes.wrapper}>
+		<div ref={aboutRef} className={classes.bg} style={{ paddingTop: rem(60)}}>
+			<Container className={classes.wrapper}>
 				<div className={classes.inner}>
 					<div className={classes.content}>
 						<Title className={classes.title}>

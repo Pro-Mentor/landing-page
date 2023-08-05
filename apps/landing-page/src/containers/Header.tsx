@@ -20,7 +20,11 @@ import { useContext } from 'react';
 const useStyles = createStyles((theme) => ({
 	button: {
 		backgroundColor: '#35314E',
-		width: px(120)
+		width: px(120),
+
+		'&:hover': {
+			backgroundColor: '#8F87A1'
+		}
 	},
 	link: {
 		display: 'flex',
@@ -82,7 +86,7 @@ const useStyles = createStyles((theme) => ({
 }));
 
 export function LandingHeader() {
-	const { navigateAbout, navigateCompanies, navigateFeatures, navigateMentors } = useContext(NavigationContext) as NavigationContextType
+	const { navigateAbout, navigateCompanies, navigateFeatures, navigateMentors, navigateTop } = useContext(NavigationContext) as NavigationContextType
 
 	const [drawerOpened, { toggle: toggleDrawer, close: closeDrawer }] = useDisclosure(false);
 	const { classes, theme } = useStyles();
@@ -125,6 +129,9 @@ export function LandingHeader() {
 		else if (name === "Companies") {
 			navigateCompanies()
 		}
+		else if (name === "Top") {
+			navigateTop()
+		}
 	}
 
 	return (
@@ -132,21 +139,9 @@ export function LandingHeader() {
 			<Header height={60} px="md">
 				<Group position="apart" sx={{ height: '100%' }}>
 					<div>
-						<img src={logo} alt="logo" width={50} />
+						<img src={logo} alt="logo" width={50} onClick={() => sectionScrollHandler("Top")} />
 					</div>
 					<Group sx={{ height: '100%' }} spacing={0} className={classes.hiddenMobile}>
-						{/* <a href="#" className={classes.link}>
-							About Us
-						</a>
-						<a href="#" className={classes.link}>
-							Features
-						</a>
-						<a href="#" className={classes.link}>
-							Companies
-						</a>
-						<a href="#" className={classes.link}>
-							Mentors
-						</a> */}
 						{
 							navigations.map(nav => (
 								<div className={classes.link} key={nav.id} onClick={() => sectionScrollHandler(nav.title)}>
@@ -177,18 +172,13 @@ export function LandingHeader() {
 				<ScrollArea h={`calc(100vh - ${rem(60)})`} mx="-md">
 					<Divider my="sm" color={theme.colorScheme === 'dark' ? 'dark.5' : 'gray.1'} />
 
-					<a href="#" className={classes.link}>
-						About Us
-					</a>
-					<a href="#" className={classes.link}>
-						Features
-					</a>
-					<a href="#" className={classes.link}>
-						Companies
-					</a>
-					<a href="#" className={classes.link}>
-						Mentors
-					</a>
+					{
+						navigations.map(nav => (
+							<div className={classes.link} key={nav.id} onClick={() => sectionScrollHandler(nav.title)}>
+								{nav.title}
+							</div>
+						))
+					}
 
 					<Divider my="sm" color={theme.colorScheme === 'dark' ? 'dark.5' : 'gray.1'} />
 

@@ -97,14 +97,14 @@ const useStyles = createStyles((theme) => ({
 export function Features() {
 	const featuresRef = useRef()
 
-	const { navigateFeatures } = useContext(NavigationContext) as NavigationContextType
+	const { features } = useContext(NavigationContext) as NavigationContextType
 
 	useEffect(() => {
 		scrolling(featuresRef)
-	}, [navigateFeatures])
+	}, [features])
 
 	const { classes } = useStyles();
-	const features = mockdata.map((feature) => (
+	const featuresList = mockdata.map((feature) => (
 		<Card key={feature.title} shadow="md" radius="md" className={classes.card} padding="xl">
 			<img src={feature.icon} alt="icon" width={60} />
 			<Text fz="lg" fw={500} className={classes.cardTitle} mt="md">
@@ -117,13 +117,13 @@ export function Features() {
 	));
 
 	return (
-		<Container ref={featuresRef} size="lg" py={60}>
+		<Container ref={featuresRef} size="lg" pt={60}>
 			<Title order={2} className={classes.title} ta="center" mt="sm">
 				Unlock Your Potential with ProMentor
 			</Title>
 
 			<SimpleGrid cols={3} spacing="xl" mt={50} breakpoints={[{ maxWidth: 'md', cols: 1 }]}>
-				{features}
+				{featuresList}
 			</SimpleGrid>
 		</Container>
 	);

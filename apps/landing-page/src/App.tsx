@@ -8,7 +8,10 @@ function App() {
 
   // auto scrolling at loading fixed
   useEffect(() => {
-    window.scrollTo(0, 0);
+    console.log("fix back")
+    // window.scrollTo(0, 0);
+    // document.querySelector('body')?.scrollIntoView({ behavior: 'smooth' });
+    window.scroll(0, 0);
   }, []);
 
   return (
