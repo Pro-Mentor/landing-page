@@ -1,27 +1,29 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
-import {Button} from 'ui';
+import React, { useEffect } from 'react';
+import {
+  AppShell
+} from '@mantine/core';
+import { LandingHeader, HeroBanner, Welcome, Features, RegisterBanner, EmployeeBanner, Footer } from './containers';
 
 function App() {
+
+  // auto scrolling at loading fixed
+  useEffect(() => {
+    console.log("fix back")
+    // window.scrollTo(0, 0);
+    // document.querySelector('body')?.scrollIntoView({ behavior: 'smooth' });
+    window.scroll(0, 0);
+  }, []);
+
   return (
-    <div className="App">
-      <Button />
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <AppShell padding={0}>
+      <LandingHeader />
+      <HeroBanner />
+      <Welcome />
+      <Features />
+      <RegisterBanner />
+      <EmployeeBanner />
+      <Footer />
+    </AppShell>
   );
 }
 
